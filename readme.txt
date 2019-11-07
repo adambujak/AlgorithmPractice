@@ -1,4 +1,4 @@
-##General Algorithm Practice
+# General Algorithm Practice
 
-List of problems:
-- Find Number of Moves for Insertion Sort 
+## List of problems:
+ - Find Number of Moves for Insertion Sort 
