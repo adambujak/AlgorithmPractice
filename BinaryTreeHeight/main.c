@@ -8,6 +8,12 @@
 #include <math.h>
 #include <stdlib.h>
 
+static inline int max ( int a, int b ) 
+{
+    return (a>b?a:b);
+} 
+
+
 typedef int    data_t;
 typedef struct node_struct node_t;
 struct node_struct 
@@ -15,7 +21,7 @@ struct node_struct
     data_t   data;
     node_t * left;
     node_t * right;
-} 
+};
 
 node_t * insert ( node_t * root, data_t data )
 {
@@ -47,13 +53,22 @@ void printTree ( node_t * root )
         return;
     }
     printTree(root->left);
-    printf("%d", root->data);
+    printf("%d ", root->data);
     printTree(root->right);
+}
+
+int getHeight ( node_t * root )
+{
+    if (root == NULL)
+    {
+        return 0;
+    }
+    return 1 + max(getHeight(root->left), getHeight(root->right));
 }
 
 int main ( void ) 
 {
-    node_t binaryTree = NULL;
+    node_t * binaryTree = NULL;
     binaryTree = insert(binaryTree, 5);
 
     for (int i = 0; i < 10; i += 2)
@@ -61,5 +76,6 @@ int main ( void )
         insert(binaryTree, i);
     }
 
+    printf("%d\n", getHeight(binaryTree) );
     printTree(binaryTree);
 }
